@@ -4,11 +4,11 @@ const HeroSection = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
         {
-            image: "../public/1.jpg",
+            image: "/1.jpg",
             title: "Luxurious Rooms",
         },
-        { image: "../public/2.jpg", title: "Breathtaking Views" },
-        { image: "../public/3.jpg", title: "Unforgettable Experiences" },
+        { image: "/2.jpg", title: "Breathtaking Views" },
+        { image: "/3.jpg", title: "Unforgettable Experiences" },
     ];
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const HeroSection = () => {
         }, 5000); // Change slide every 5 seconds
 
         return () => clearInterval(timer);
-    }, []);
+    });
 
     return (
         <section

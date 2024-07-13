@@ -6,10 +6,10 @@ const Navigation = () => {
                     <a href="/">
                         <img
                             src="/path-to-your-logo.png"
-                            alt="KETO"
+                            alt="ET"
                             className="logo-image"
                         />
-                        <span className="logo-text">KETO</span>
+                        <span className="logo-text">Easy Travel</span>
                     </a>
                 </div>
                 <ul className="navbar-menu">
