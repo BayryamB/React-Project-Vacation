@@ -5,7 +5,7 @@ const Navigation = () => {
                 <div className="navbar-logo">
                     <a href="/">
                         <img
-                            src="/path-to-your-logo.png"
+                            src="/Hand-drawn-a-palm-tress-illustration-on-transparent-background-PNG.png"
                             alt="ET"
                             className="logo-image"
                         />
