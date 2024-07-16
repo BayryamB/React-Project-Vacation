@@ -38,7 +38,7 @@
 }
 
 .booking-button {
-    background-color: #ff0000;
+    background-color: #182295;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -51,7 +51,7 @@
 }
 
 .booking-button:hover {
-    background-color: #cc0000;
+    background-color: #182295;
 }
 
 .hero-indicators {
@@ -73,7 +73,7 @@
 }
 
 .indicator.active {
-    background-color: #ff0000;
+    background-color: #182295;
 }
 
 @media (max-width: 768px) {

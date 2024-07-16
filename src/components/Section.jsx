@@ -8,7 +8,7 @@ const HeroSection = () => {
             title: "Luxurious Rooms",
         },
         { image: "/2.jpg", title: "Breathtaking Views" },
-        { image: "/3.jpg", title: "Unforgettable Experiences" },
+        { image: "/4.jpg", title: "Unforgettable Experiences" },
     ];
 
     useEffect(() => {

@@ -25,17 +25,17 @@ const Navigation = () => {
                     </li>
                     <li className="navbar-item">
                         <a href="/our-room" className="navbar-link">
-                            OUR ROOM
+                            DESTINATIONS
                         </a>
                     </li>
                     <li className="navbar-item">
                         <a href="/gallery" className="navbar-link">
-                            GALLERY
+                            OFFERS
                         </a>
                     </li>
                     <li className="navbar-item">
                         <a href="/blog" className="navbar-link">
-                            BLOG
+                            CATALOG
                         </a>
                     </li>
                     <li className="navbar-item">

@@ -34,7 +34,7 @@
     bottom: 0;
     width: 50px;
     height: 2px;
-    background-color: #ff0000;
+    background-color: #182295;
 }
 
 .footer-link {
@@ -44,7 +44,7 @@
 }
 
 .footer-link:hover {
-    color: #ff0000;
+    color: #182295;
 }
 
 .footer-input {
@@ -59,7 +59,7 @@
 .footer-button {
     width: 100%;
     padding: 0.5rem;
-    background-color: #ff0000;
+    background-color: #182295;
     color: #ffffff;
     border: none;
     cursor: pointer;
@@ -67,7 +67,7 @@
 }
 
 .footer-button:hover {
-    background-color: #cc0000;
+    background-color: #182295;
 }
 
 .footer-social-icons {
@@ -82,7 +82,7 @@
 }
 
 .footer-social-icons i:hover {
-    color: #ff0000;
+    color: #182295;
 }
 
 .footer ul {
