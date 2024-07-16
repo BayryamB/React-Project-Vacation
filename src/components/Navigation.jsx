@@ -24,17 +24,17 @@ const Navigation = () => {
                         </a>
                     </li>
                     <li className="navbar-item">
-                        <a href="/our-room" className="navbar-link">
+                        <a href="/destinations" className="navbar-link">
                             DESTINATIONS
                         </a>
                     </li>
                     <li className="navbar-item">
-                        <a href="/gallery" className="navbar-link">
+                        <a href="/offers" className="navbar-link">
                             OFFERS
                         </a>
                     </li>
                     <li className="navbar-item">
-                        <a href="/blog" className="navbar-link">
+                        <a href="/catalog" className="navbar-link">
                             CATALOG
                         </a>
                     </li>

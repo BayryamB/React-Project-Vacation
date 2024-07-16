@@ -1,4 +1,5 @@
 import About from "./components/About";
+import Destinations from "./components/Destinations";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 import Section from "./components/Section";
@@ -12,6 +13,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Section />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/destinations" element={<Destinations />} />
             </Routes>
 
             <Footer />
