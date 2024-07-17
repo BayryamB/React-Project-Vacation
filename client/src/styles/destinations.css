@@ -1,17 +1,19 @@
 .destinations-page {
     font-family: Arial, sans-serif;
-    padding: 20px;
     background-color: #ffffff;
 }
 
 .page-header {
+    background-color: #0f172a;
+    color: #fff;
+    padding: 40px 0;
     text-align: center;
-    margin-bottom: 30px;
 }
 
 .page-header h1 {
-    font-size: 2.5em;
-    color: #333;
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
 }
 
 .destinations-grid {
@@ -21,6 +23,7 @@
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 3em 0 2em;
 }
 
 .destination-card {
@@ -46,12 +49,25 @@
     transform: scale(1.1);
 }
 
-.discount-badge {
+.destination-details {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
+    color: #fff;
+    padding: 10px;
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    z-index: 1;
+}
+
+.discount-badge {
     background-color: #ffffff;
-    color: #e74c3c;
+    color: #e81d16;
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: bold;
@@ -60,9 +76,6 @@
 }
 
 .location-label {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
     background-color: #ffffff;
     color: #27ae60;
     padding: 5px 10px;

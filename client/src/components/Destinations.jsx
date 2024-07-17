@@ -30,10 +30,14 @@ const Destinations = () => {
                                         className="destination-image"
                                     />
                                 </Link>
-                                <div className="discount-badge">
-                                    {discount}% OFF
+                                <div className="destination-details">
+                                    <div className="discount-badge">
+                                        {discount}% OFF
+                                    </div>
+                                    <div className="location-label">
+                                        {location}
+                                    </div>
                                 </div>
-                                <div className="location-label">{location}</div>
                             </div>
                         )
                     )}
