@@ -19,11 +19,17 @@ const Destinations = () => {
                     {destinations.map(
                         ({ image, discount, location }, index) => (
                             <div key={index} className="destination-card">
-                                <img
-                                    src={image}
-                                    alt={location}
-                                    className="destination-image"
-                                />
+                                <a
+                                    href={`/destinations/${location
+                                        .toLowerCase()
+                                        .replace(/\s+/g, "-")}`}
+                                >
+                                    <img
+                                        src={image}
+                                        alt={location}
+                                        className="destination-image"
+                                    />
+                                </a>
                                 <div className="discount-badge">
                                     {discount}% OFF
                                 </div>
