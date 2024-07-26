@@ -10,6 +10,27 @@
     font-family: Arial, sans-serif;
 }
 
+.login-form {
+    /* Increase the max-width to accommodate the larger form */
+    max-width: 450px;
+}
+
+/* Style for the "I agree to the Terms and Conditions" checkbox */
+.remember-me label {
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+/* Adjust spacing for the additional form fields */
+.form-group + .form-group {
+    margin-top: 1rem;
+}
+
+/* Style for the "Already have an account? Log in" link */
+.forgot-password a {
+    font-size: 0.9rem;
+}
+
 /* Login form styles */
 .login-form {
     background: rgba(255, 255, 255, 0.2);
@@ -39,6 +60,7 @@
     font-size: 0.9rem;
 }
 
+.fullName input,
 .form-group input[type="email"],
 .form-group input[type="password"] {
     width: 100%;
@@ -49,6 +71,7 @@
     color: white;
 }
 
+.fullName input::placeholder,
 .form-group input[type="email"]::placeholder,
 .form-group input[type="password"]::placeholder {
     color: rgba(255, 255, 255, 0.7);
@@ -119,7 +142,13 @@
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 3rem;
+}
+
+.social-icons i {
+    font-size: 2rem;
+    color: rgb(19, 37, 202);
+    cursor: pointer;
 }
 
 .social-icons a {
