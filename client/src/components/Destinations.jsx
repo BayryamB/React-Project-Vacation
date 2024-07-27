@@ -1,12 +1,31 @@
 // import React from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import DestinationService from "../services/destinationService";
 const Destinations = () => {
-    const destinations = [
-        { image: "/portugal.jpg", discount: 30, location: "Portugal" },
-        { image: "/greece.jpg", discount: 20, location: "Greece" },
-        { image: "/turkey.jpg", discount: 25, location: "Turkey" },
-        { image: "/bulgaria.jpg", discount: 35, location: "Bulgaria" },
-    ];
+    const [destinations, setDestinations] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        DestinationService.getAllDestinations()
+            .then((data) => {
+                setDestinations(data);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setIsLoading(false);
+            });
+    }, []);
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="destinations-page">

@@ -342,7 +342,7 @@ app.delete("/api/short/:id", async (req, res) => {
 });
 
 // Get all destinations
-app.get("/api/destinations", async (req, res) => {
+app.get("/destinations", async (req, res) => {
     try {
         const destinations = await Destination.find();
         res.json(destinations);
@@ -352,7 +352,7 @@ app.get("/api/destinations", async (req, res) => {
 });
 
 // Get destination by ID
-app.get("/api/destinations/:id", async (req, res) => {
+app.get("/destinations/:id", async (req, res) => {
     try {
         const destination = await Destination.findById(req.params.id);
         if (!destination) {
@@ -365,7 +365,7 @@ app.get("/api/destinations/:id", async (req, res) => {
 });
 
 // Create a new destination
-app.post("/api/destinations", async (req, res) => {
+app.post("/destinations", async (req, res) => {
     try {
         const destination = new Destination(req.body);
         await destination.save();
@@ -376,7 +376,7 @@ app.post("/api/destinations", async (req, res) => {
 });
 
 // Update destination by ID
-app.put("/api/destinations/:id", async (req, res) => {
+app.put("/destinations/:id", async (req, res) => {
     try {
         const destination = await Destination.findByIdAndUpdate(
             req.params.id,
@@ -393,7 +393,7 @@ app.put("/api/destinations/:id", async (req, res) => {
 });
 
 // Delete destination by ID
-app.delete("/api/destinations/:id", async (req, res) => {
+app.delete("/destinations/:id", async (req, res) => {
     try {
         const destination = await Destination.findByIdAndDelete(req.params.id);
         if (!destination) {
