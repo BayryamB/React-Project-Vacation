@@ -10,6 +10,7 @@ const Destinations = () => {
     useEffect(() => {
         DestinationService.getAllDestinations()
             .then((data) => {
+                console.log(data);
                 setDestinations(data);
                 setIsLoading(false);
             })
@@ -35,31 +36,25 @@ const Destinations = () => {
 
             <main className="destinations-content">
                 <div className="destinations-grid">
-                    {destinations.map(
-                        ({ image, discount, location }, index) => (
-                            <div key={index} className="destination-card">
-                                <Link
-                                    to={`/destinations/${location
-                                        .toLowerCase()
-                                        .replace(/\s+/g, "-")}`}
-                                >
-                                    <img
-                                        src={image}
-                                        alt={location}
-                                        className="destination-image"
-                                    />
-                                </Link>
-                                <div className="destination-details">
-                                    <div className="discount-badge">
-                                        {discount}% OFF
-                                    </div>
-                                    <div className="location-label">
-                                        {location}
-                                    </div>
+                    {destinations.map((destination) => (
+                        <div key={destination._id} className="destination-card">
+                            <Link to={`/destinations/${destination._id}`}>
+                                <img
+                                    src={destination.photos[0]}
+                                    alt={destination.name}
+                                    className="destination-image"
+                                />
+                            </Link>
+                            <div className="destination-details">
+                                <div className="discount-badge">
+                                    {destination.discount}% OFF
+                                </div>
+                                <div className="location-label">
+                                    {`${destination.name} ${destination.country}`}
                                 </div>
                             </div>
-                        )
-                    )}
+                        </div>
+                    ))}
                 </div>
             </main>
         </div>

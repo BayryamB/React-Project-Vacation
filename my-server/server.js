@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 3030;
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/Angular-Project", {
+mongoose.connect("mongodb://localhost:27017/Easy-Travel", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -36,6 +36,7 @@ const destinationSchema = new mongoose.Schema({
     country: { type: String },
     description: String,
     photos: [String],
+    discount: Number,
 });
 
 const Destination = mongoose.model("Destination", destinationSchema);
