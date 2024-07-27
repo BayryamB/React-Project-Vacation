@@ -1,4 +1,5 @@
 import About from "./components/About";
+import DestinationDetails from "./components/DestinationDetails";
 import Destinations from "./components/Destinations";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
@@ -17,6 +18,10 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/destinations" element={<Destinations />} />
                 <Route path="/register" element={<RegisterForm />} />
+                <Route
+                    path="/destinations/:id"
+                    element={<DestinationDetails />}
+                />
                 <Route path="/login" element={<LoginForm />} />
             </Routes>
 

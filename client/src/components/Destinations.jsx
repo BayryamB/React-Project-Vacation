@@ -10,7 +10,6 @@ const Destinations = () => {
     useEffect(() => {
         DestinationService.getAllDestinations()
             .then((data) => {
-                console.log(data);
                 setDestinations(data);
                 setIsLoading(false);
             })
