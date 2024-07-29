@@ -423,7 +423,7 @@ app.delete("/destinations/:id", async (req, res) => {
 
 // Route handlers
 // Get all rents
-app.get("/api/rents", async (req, res) => {
+app.get("/long-term-stays", async (req, res) => {
     try {
         const rents = await Rent.find();
         res.status(200).json(rents);
@@ -432,8 +432,17 @@ app.get("/api/rents", async (req, res) => {
     }
 });
 
+// Get five recent rents
+app.get("/long-term-stays/recent", async (req, res) => {
+    try {
+        const rents = await Rent.find().limit(5);
+        res.status(200).json(rents);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 // Get a single rent by ID
-app.get("/api/rents/:id", async (req, res) => {
+app.get("/long-term-stays/:id", async (req, res) => {
     try {
         const rent = await Rent.findById(req.params.id);
         if (!rent) {
@@ -446,7 +455,7 @@ app.get("/api/rents/:id", async (req, res) => {
 });
 
 // Create a new rent
-app.post("/api/rents", async (req, res) => {
+app.post("/long-term-stays", async (req, res) => {
     try {
         const rent = new Rent(req.body);
         await rent.save();
@@ -457,7 +466,7 @@ app.post("/api/rents", async (req, res) => {
 });
 
 // Update an existing rent
-app.put("/api/rents/:id", async (req, res) => {
+app.put("/long-term-stays/:id", async (req, res) => {
     try {
         const rent = await Rent.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
@@ -472,7 +481,7 @@ app.put("/api/rents/:id", async (req, res) => {
 });
 
 // Add likes to a rent
-app.post("/api/rents/like/:id", async (req, res) => {
+app.post("/long-term-stays/like/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
     try {
@@ -489,7 +498,7 @@ app.post("/api/rents/like/:id", async (req, res) => {
 });
 
 // Remove likes from a rent
-app.post("/api/rents/dislike/:id", async (req, res) => {
+app.post("/long-term-stays/dislike/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body; // Access the userId from the request body
     try {
@@ -506,7 +515,7 @@ app.post("/api/rents/dislike/:id", async (req, res) => {
 });
 
 // Delete a rent
-app.delete("/api/rents/:id", async (req, res) => {
+app.delete("/long-term-stays/:id", async (req, res) => {
     try {
         const rent = await Rent.findByIdAndDelete(req.params.id);
         if (!rent) {
