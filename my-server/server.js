@@ -182,7 +182,15 @@ const RentShort = mongoose.model("RentsShort", rentShortSchema);
 
 // Route handlers
 // Get all rents-short
-app.get("/api/short", async (req, res) => {
+app.get("/normal-stays/recent", async (req, res) => {
+    try {
+        const rents = await RentShort.find().sort({ date: -1 }).limit(5);
+        res.status(200).json(rents);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+app.get("/normal-stays", async (req, res) => {
     try {
         const rents = await RentShort.find();
         res.status(200).json(rents);
@@ -192,7 +200,7 @@ app.get("/api/short", async (req, res) => {
 });
 
 // Get a single rent by ID
-app.get("/api/short/:id", async (req, res) => {
+app.get("/normal-stays/:id", async (req, res) => {
     try {
         const rent = await RentShort.findById(req.params.id);
         if (!rent) {
@@ -205,7 +213,7 @@ app.get("/api/short/:id", async (req, res) => {
 });
 
 // Create a new rent
-app.post("/api/short", async (req, res) => {
+app.post("/normal-stays", async (req, res) => {
     try {
         const rent = new RentShort(req.body);
         await rent.save();
@@ -216,7 +224,7 @@ app.post("/api/short", async (req, res) => {
 });
 
 // Update an existing rent
-app.put("/api/short/:id", async (req, res) => {
+app.put("/normal-stays:id", async (req, res) => {
     try {
         const rent = await RentShort.findByIdAndUpdate(
             req.params.id,
@@ -303,7 +311,7 @@ app.post("/api/users/dislike/:id", async (req, res) => {
 });
 
 // Add likes to a rent
-app.post("/api/short/like/:id", async (req, res) => {
+app.post("/normal-stays/like/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
     try {
@@ -320,7 +328,7 @@ app.post("/api/short/like/:id", async (req, res) => {
 });
 
 // Remove likes from a rent
-app.post("/api/short/dislike/:id", async (req, res) => {
+app.post("/normal-stays/dislike/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body; // Access the userId from the request body
     try {
@@ -337,7 +345,7 @@ app.post("/api/short/dislike/:id", async (req, res) => {
 });
 
 // Delete a rent
-app.delete("/api/short/:id", async (req, res) => {
+app.delete("/normal-stays/:id", async (req, res) => {
     try {
         const rent = await RentShort.findByIdAndDelete(req.params.id);
         if (!rent) {

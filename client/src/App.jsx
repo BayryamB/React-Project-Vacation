@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import RegisterForm from "./components/RegisterForm";
 import Section from "./components/Section";
 import { Routes, Route } from "react-router-dom";
+import Stays from "./components/Stays";
 //import { useState } from "react";
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     element={<DestinationDetails />}
                 />
                 <Route path="/login" element={<LoginForm />} />
+                <Route path="/stays" element={<Stays />} />
             </Routes>
 
             <Footer />
