@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const HeroSection = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
@@ -26,11 +26,14 @@ const HeroSection = () => {
         >
             <div className="hero-content">
                 <div className="booking-panel">
-                    <h2 className="booking-title">BOOK A ROOM ONLINE</h2>
+                    <h2 className="booking-title">BOOK A TRAVEL</h2>
                     <p className="booking-subtitle">
                         {slides[currentSlide].title}
                     </p>
-                    <button className="booking-button">Book Now</button>
+
+                    <Link to="/destinations" className="booking-button">
+                        BOOK NOW
+                    </Link>
                 </div>
             </div>
             <div className="hero-indicators">

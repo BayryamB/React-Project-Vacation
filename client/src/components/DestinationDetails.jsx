@@ -16,28 +16,70 @@ export default function DestinationDetails() {
             });
     }, [id]);
     return (
-        <div className="card-container">
-            <div className="card">
-                <div className="photo-grid">
-                    {photos.map((photo, index) => (
-                        <img
-                            key={index}
-                            src={photo}
-                            alt={`${destination.name} Photo ${index + 1}`}
-                            className="destination-photo"
-                        />
-                    ))}
-                </div>
-                <div className="card-content">
-                    <h2 className="destination-name">{destination.name}</h2>
-                    <p className="description">{destination.description}</p>
-                    {destination.discount && (
-                        <div className="discount">
-                            {destination.discount}% OFF
+        <div className="destination-detail">
+            <main>
+                <section className="destination-info">
+                    <h1>
+                        {destination.name} {destination.country}
+                    </h1>
+                    <p>{destination.description}</p>
+                    <div className="location-info">
+                        <span>📍 {destination.country}</span>
+                        <span>
+                            ⭐ {destination.rating} ({destination.likes}{" "}
+                            Reviews)
+                        </span>
+                        <span>👤 {destination.guide}</span>
+                    </div>
+                    <div className="price-info">
+                        <h2>
+                            ${destination.price}
+                            <span>/Person a week</span>
+                        </h2>
+                        <button className="share-button">
+                            <i className="fa fa-share-alt"></i> Share
+                        </button>
+                        {destination.discount > 0 && (
+                            <div className="discount">
+                                {destination.discount}% OFF
+                            </div>
+                        )}
+                        <button className="buy-button">Buy Now</button>
+                        <button className="add-to-cart">Add to Chart</button>
+                    </div>
+                </section>
+
+                <section className="destination-image">
+                    <img src={destination.cover} alt={destination.name} />
+                    <div className="photo-gallery">
+                        <div className="photo-grid">
+                            {photos.slice(0, 3).map((photo, index) => (
+                                <img
+                                    key={index}
+                                    src={photo}
+                                    alt={`${destination.name} ${index + 1}`}
+                                />
+                            ))}
                         </div>
-                    )}
-                </div>
-            </div>
+                    </div>
+                    <aside className="reviews">
+                        <h3>Reviews and ratings</h3>
+                        <div className="overall-rating">
+                            <span className="rating">{destination.rating}</span>
+                            <div className="stars">
+                                {"⭐".repeat(Math.round(destination.rating))}
+                            </div>
+                            <span>Based on {destination.likes} reviewers</span>
+                        </div>
+                        <section className="additional-info">
+                            <div className="overview">
+                                <h3>Comfortable place for you</h3>
+                                <p>{destination.overview}</p>
+                            </div>
+                        </section>
+                    </aside>
+                </section>
+            </main>
         </div>
     );
 }

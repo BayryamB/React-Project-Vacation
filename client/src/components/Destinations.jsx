@@ -39,7 +39,7 @@ const Destinations = () => {
                         <div key={destination._id} className="destination-card">
                             <Link to={`/destinations/${destination._id}`}>
                                 <img
-                                    src={destination.photos[0]}
+                                    src={destination.cover}
                                     alt={destination.name}
                                     className="destination-image"
                                 />

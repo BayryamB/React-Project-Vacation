@@ -36,7 +36,14 @@ const destinationSchema = new mongoose.Schema({
     country: { type: String },
     description: String,
     photos: [String],
+    cover: String,
     discount: Number,
+    price: Number,
+    guide: String,
+    rating: Number,
+    overview: String,
+    likes: [String],
+    coments: [String],
 });
 
 const Destination = mongoose.model("Destination", destinationSchema);
