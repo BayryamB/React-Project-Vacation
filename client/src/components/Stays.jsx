@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import NormalStaysService from "../services/normalStaysService";
-import StayOptions from "./StayOptions";
 const Stays = () => {
     const [stays, setStays] = useState([]);
     const [error, setError] = useState(null);
@@ -33,13 +32,16 @@ const Stays = () => {
                     {stays.map((stay) => (
                         <div key={stay._id}>
                             <div className="stay-card">
+                                <img src={stay.cover} alt="" />
                                 <h3>
                                     {stay.location.city} {stay.location.country}
                                 </h3>
-                                <img src={stay.cover} alt="" />
-                                <p>Created at : {stay.date}</p>
-                                <p>{stay.price}</p>
-                                <p>{stay.likes.length}</p>
+                                <p>
+                                    Created at :{" "}
+                                    {new Date(stay.date).toLocaleDateString()}
+                                </p>
+                                <p className="price">{stay.price} $/night</p>
+                                <p className="likes">{stay.likes.length}</p>
                             </div>
                         </div>
                     ))}
