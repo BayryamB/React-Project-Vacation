@@ -8,6 +8,7 @@ import RegisterForm from "./components/RegisterForm";
 import Section from "./components/Section";
 import { Routes, Route } from "react-router-dom";
 import Stays from "./components/Stays";
+import NormalStays from "./components/NormalStays";
 //import { useState } from "react";
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 />
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/stays" element={<Stays />} />
+                <Route path="/normal-stays" element={<NormalStays />} />
             </Routes>
 
             <Footer />

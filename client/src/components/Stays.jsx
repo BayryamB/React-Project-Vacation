@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import NormalStaysService from "../services/normalStaysService";
 import LongTermeStaysService from "../services/longTermStaysService";
 const Stays = () => {
@@ -58,6 +59,14 @@ const Stays = () => {
                         </div>
                     ))}
                 </div>
+                <div className="buttons">
+                    <p className="view">
+                        <Link to="/normal-stays">View All Normal Stays</Link>
+                    </p>
+                    <p className="create">
+                        <Link to="/normal-stays/create">Rent Your Place</Link>
+                    </p>
+                </div>
             </main>
 
             <header className="page-header">
@@ -82,6 +91,18 @@ const Stays = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+                <div className="buttons">
+                    <p className="view">
+                        <Link to="/long-term-stays">
+                            View All Long Term Stays
+                        </Link>
+                    </p>
+                    <p className="create">
+                        <Link to="/long-term-stays/create">
+                            Rent Your Place
+                        </Link>
+                    </p>
                 </div>
             </main>
         </div>
