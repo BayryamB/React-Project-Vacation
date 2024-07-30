@@ -9,6 +9,7 @@ import Section from "./components/Section";
 import { Routes, Route } from "react-router-dom";
 import Stays from "./components/Stays";
 import NormalStays from "./components/NormalStays";
+import LongTermStays from "./components/LontTermStays";
 //import { useState } from "react";
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/login" element={<LoginForm />} />
                 <Route path="/stays" element={<Stays />} />
                 <Route path="/normal-stays" element={<NormalStays />} />
+                <Route path="/long-term-stays" element={<LongTermStays />} />
             </Routes>
 
             <Footer />

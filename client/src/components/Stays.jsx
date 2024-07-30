@@ -18,7 +18,7 @@ const Stays = () => {
                 setIsLoading(false);
             });
 
-        LongTermeStaysService.getFiveRecentNormalStays()
+        LongTermeStaysService.getFiveRecentLongStays()
             .then((data) => {
                 setLongStays(data);
                 setIsLoading(false);

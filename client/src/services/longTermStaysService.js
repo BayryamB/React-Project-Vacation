@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://localhost:3030";
 
 const LongTermeStaysService = {
-    getAllNormalStays: async () => {
+    getAllLongStays: async () => {
         try {
             const response = await fetch(`${API_BASE_URL}/long-term-stays`);
             if (!response.ok) {
@@ -10,11 +10,11 @@ const LongTermeStaysService = {
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error("Error fetching normalStays:", error);
+            console.error("Error fetching LongStays:", error);
             throw error;
         }
     },
-    getFiveRecentNormalStays: async () => {
+    getFiveRecentLongStays: async () => {
         try {
             const response = await fetch(
                 `${API_BASE_URL}/long-term-stays/recent`
@@ -25,7 +25,7 @@ const LongTermeStaysService = {
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error("Error fetching normalStays:", error);
+            console.error("Error fetching LongStays:", error);
             throw error;
         }
     },
