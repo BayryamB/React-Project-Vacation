@@ -27,6 +27,20 @@ const NormalStaysService = {
             throw error;
         }
     },
+
+    getNormalStayById: async (id) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/normal-stays/${id}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(`Error fetching normalStay with id ${id}:`, error);
+            throw error;
+        }
+    },
 };
 
 export default NormalStaysService;

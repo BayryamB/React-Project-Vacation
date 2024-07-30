@@ -8,7 +8,6 @@ export default function DestinationDetails() {
     useEffect(() => {
         DestinationService.getDestinationById(id)
             .then((data) => {
-                console.log(data);
                 setDestination(data);
             })
             .catch((error) => {
