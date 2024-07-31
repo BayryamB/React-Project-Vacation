@@ -85,16 +85,23 @@ const Stays = () => {
                     {longStays.map((stay) => (
                         <div key={stay._id}>
                             <div className="stay-card">
-                                <img src={stay.cover} alt="" />
-                                <h3>
-                                    {stay.location.city} {stay.location.country}
-                                </h3>
-                                <p>
-                                    Created at :{" "}
-                                    {new Date(stay.date).toLocaleDateString()}
-                                </p>
-                                <p className="price">{stay.price} $/month</p>
-                                <p className="likes">{stay.likes.length}</p>
+                                <Link to={`/long-term-stays/${stay._id}`}>
+                                    <img src={stay.cover} alt="" />
+                                    <h3>
+                                        {stay.location.city}{" "}
+                                        {stay.location.country}
+                                    </h3>
+                                    <p>
+                                        Created at :{" "}
+                                        {new Date(
+                                            stay.date
+                                        ).toLocaleDateString()}
+                                    </p>
+                                    <p className="price">
+                                        {stay.price} $/month
+                                    </p>
+                                    <p className="likes">{stay.likes.length}</p>
+                                </Link>
                             </div>
                         </div>
                     ))}

@@ -11,6 +11,7 @@ import Stays from "./components/Stays";
 import NormalStays from "./components/NormalStays";
 import LongTermStays from "./components/LontTermStays";
 import NormalStayDetails from "./components/NormalStayDetails";
+import LongTermStayDetails from "./components/LongTermStayDetails";
 //import { useState } from "react";
 function App() {
     return (
@@ -33,6 +34,10 @@ function App() {
                 <Route
                     path="/normal-stays/:stayId"
                     element={<NormalStayDetails />}
+                />
+                <Route
+                    path="/long-term-stays/:stayId"
+                    element={<LongTermStayDetails />}
                 />
             </Routes>
 
