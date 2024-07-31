@@ -29,36 +29,43 @@ export default function NormalStayDetails() {
 
     return (
         <div>
-            <h2>Stay Details</h2>
-            <p>
-                Location: {stay.location.city}, {stay.location.country}
-            </p>
-            <p>Price: ${stay.price} per night</p>
-            <p>Description: {stay.description}</p>
-            <p>Likes: {stay.likes.length}</p>
-            <h3>Options:</h3>
-            <ul>
-                {Object.entries(stay.options).map(([option, value]) => (
-                    <li key={option}>
-                        {option}: {value ? "Yes" : "No"}
-                    </li>
-                ))}
-            </ul>
-            <h3>Photos:</h3>
             <div>
-                {stay.photos.map((photo, index) => (
-                    <img
-                        key={index}
-                        src={photo}
-                        alt={`Stay photo ${index + 1}`}
-                        style={{
-                            width: "200px",
-                            height: "150px",
-                            objectFit: "cover",
-                            margin: "5px",
-                        }}
-                    />
-                ))}
+                <header className="page-header">
+                    <h1>Stay Details</h1>
+                </header>
+            </div>
+            <div className="stay-detail">
+                <div className="stay-card">
+                    <p className="location-info">
+                        Location: {stay.location.city}, {stay.location.country}
+                    </p>
+                    <p className="price">Price: ${stay.price} per night</p>
+                    <p>Description: {stay.description}</p>
+                    <p className="likes-info">Likes: {stay.likes.length}</p>
+                    <h3>Options:</h3>
+                    <ul className="stay-options">
+                        {Object.entries(stay.options).map(([option, value]) => (
+                            <li key={option}>
+                                {option}: {value ? "Yes" : "No"}
+                            </li>
+                        ))}
+                    </ul>
+                    <h3>Photos:</h3>
+                    <div className="stay-photos">
+                        <div className="cover-photo-normal">
+                            <img src={stay.cover} alt="Cover" />
+                        </div>
+                        <div className="photo-grid">
+                            {stay.photos.map((photo, index) => (
+                                <img
+                                    key={index}
+                                    src={photo}
+                                    alt={`Stay photo ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

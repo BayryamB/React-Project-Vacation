@@ -1,0 +1,146 @@
+.stay-detail {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 1200px;
+}
+
+.stay-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 800px;
+    height: auto;
+}
+
+.location-info {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 1.4em;
+    color: #2ecc71;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.likes-info {
+    display: flex;
+    align-items: center;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.likes-info::before {
+    content: "♥";
+    margin-right: 5px;
+}
+
+.stay-card p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.stay-card h3 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+.stay-options {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.stay-options li {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.stay-photos {
+    margin-top: 20px;
+    width: 600px;
+    height: 800px;
+}
+
+.cover-photo-normal {
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.cover-photo-normal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.photo-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.photo-grid img:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .stay-card {
+        padding: 20px;
+    }
+
+    .stay-options {
+        grid-template-columns: 1fr;
+    }
+
+    .cover-photo-normal {
+        height: 200px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .photo-grid img {
+        height: 100px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cover-photo {
+        height: 300px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .photo-grid img {
+        height: 100px;
+    }
+}
