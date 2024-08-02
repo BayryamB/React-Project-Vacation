@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AuthService from "../services/authService";
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
@@ -8,6 +9,10 @@ const LoginForm = () => {
         e.preventDefault();
         // Handle login logic here
         console.log("Login submitted", { username, password });
+        AuthService.login(username, password);
+        // reset form
+        setUsername("");
+        setPassword("");
     };
 
     return (

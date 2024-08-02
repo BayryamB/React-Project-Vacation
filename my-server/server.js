@@ -94,7 +94,7 @@ app.post("/register", async (req, res) => {
 });
 
 // Login endpoint
-app.post("/api/login", async (req, res) => {
+app.post("/login", async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username });
         if (!user) {
@@ -117,7 +117,7 @@ app.post("/api/login", async (req, res) => {
 });
 
 // Get user by ID
-app.get("/api/users/:id", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
     try {
         const userId = req.params.id;
 
@@ -137,7 +137,7 @@ app.get("/api/users/:id", async (req, res) => {
 });
 
 // Update user by ID
-app.put("/api/users/:id", async (req, res) => {
+app.put("/users/:id", async (req, res) => {
     try {
         const userId = req.params.id;
         const updateData = req.body;

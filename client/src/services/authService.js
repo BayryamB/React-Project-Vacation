@@ -36,7 +36,6 @@ const AuthService = {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log("Logged in user:", data);
             localStorage.setItem("user", username);
 
             return data;
@@ -47,21 +46,12 @@ const AuthService = {
     },
 
     logout: async () => {
-        try {
-            const response = await fetch(`${API_BASE_URL}/logout`, {
-                method: "POST",
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            console.log("Logged out user:", data);
-            localStorage.removeItem("user");
-            return data;
-        } catch (error) {
-            console.error("Error logging out user:", error);
-            throw error;
-        }
+        localStorage.removeItem("user");
+    },
+
+    getUser: function () {
+        const user = localStorage.getItem("user");
+        return user ? user : null;
     },
 };
 

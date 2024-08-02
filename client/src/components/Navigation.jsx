@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
 
 const Navigation = () => {
     return (
@@ -54,7 +55,7 @@ const Navigation = () => {
                         <div className="dropdown-content">
                             <Link to="/login">Login</Link>
                             <Link to="/register">Register</Link>
-                            <Link to="/logout">Logout</Link>
+                            <Logout />
                         </div>
                     </div>
                 </div>
