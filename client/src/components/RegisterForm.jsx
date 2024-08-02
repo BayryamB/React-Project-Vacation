@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import RegisterValidator from "../utils/registerValidator";
 import AuthService from "../services/authService";
 const RegisterForm = () => {
-    const [userName, setuserName] = useState("");
+    const [username, setuserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -12,7 +12,7 @@ const RegisterForm = () => {
         e.preventDefault();
 
         const userData = {
-            userName,
+            username,
             email,
             password,
             confirmPassword,
@@ -23,7 +23,7 @@ const RegisterForm = () => {
             return;
         }
         // Handle registration logic here
-        AuthService.register(userName, email, password);
+        AuthService.register(username, email, password);
         console.log("Registration successful");
         // reset form
         setuserName("");
@@ -38,12 +38,12 @@ const RegisterForm = () => {
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit}>
                 <h2>Create Your Account</h2>
-                <div className="form-group userName">
-                    <label htmlFor="userName">Username</label>
+                <div className="form-group username">
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
                         id="userName"
-                        value={userName}
+                        value={username}
                         onChange={(e) => setuserName(e.target.value)}
                         required
                     />

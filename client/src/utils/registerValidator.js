@@ -1,9 +1,9 @@
 export default function RegisterValidator(userData) {
     const errors = {};
-    if (!userData.userName) {
-        errors.userName = "Name is required";
-    } else if (userData.userName.length < 3) {
-        errors.userName = "Name needs to be 3 characters or more";
+    if (!userData.username) {
+        errors.username = "Name is required";
+    } else if (userData.username.length < 3) {
+        errors.username = "Name needs to be 3 characters or more";
     }
     if (!userData.email) {
         errors.email = "Email is required";

@@ -1,26 +1,26 @@
 import { useState } from "react";
 
 const LoginForm = () => {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle login logic here
-        console.log("Login submitted", { email, password });
+        console.log("Login submitted", { username, password });
     };
 
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit}>
                 <h2>Login to Your Account</h2>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                <div className="form-group username">
+                    <label htmlFor="username">Username</label>
                     <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="username"
+                        id="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>
