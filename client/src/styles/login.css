@@ -60,7 +60,7 @@
     font-size: 0.9rem;
 }
 
-.fullName input,
+.userName input,
 .form-group input[type="email"],
 .form-group input[type="password"] {
     width: 100%;
@@ -71,7 +71,7 @@
     color: white;
 }
 
-.fullName input::placeholder,
+.userName input::placeholder,
 .form-group input[type="email"]::placeholder,
 .form-group input[type="password"]::placeholder {
     color: rgba(255, 255, 255, 0.7);
@@ -155,4 +155,12 @@
     color: white;
     font-size: 1.5rem;
     text-decoration: none;
+}
+
+.error {
+    font-weight: bold;
+    color: rgb(227, 24, 24);
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 4px;
 }

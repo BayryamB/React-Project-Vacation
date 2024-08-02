@@ -3,12 +3,11 @@ import { useState } from "react";
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [rememberMe, setRememberMe] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle login logic here
-        console.log("Login submitted", { email, password, rememberMe });
+        console.log("Login submitted", { email, password });
     };
 
     return (
@@ -34,15 +33,6 @@ const LoginForm = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                </div>
-                <div className="remember-me">
-                    <input
-                        type="checkbox"
-                        id="remember-me"
-                        checked={rememberMe}
-                        onChange={(e) => setRememberMe(e.target.checked)}
-                    />
-                    <label htmlFor="remember-me">Remember me?</label>
                 </div>
                 <button type="submit" className="login-button">
                     LOGIN

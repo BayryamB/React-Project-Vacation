@@ -1,35 +1,50 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
+import RegisterValidator from "../utils/registerValidator";
+import AuthService from "../services/authService";
 const RegisterForm = () => {
-    const [fullName, setFullName] = useState("");
+    const [userName, setuserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [agreeTerms, setAgreeTerms] = useState(false);
-
+    const [errors, setErrors] = useState({});
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle registration logic here
-        console.log("Registration submitted", {
-            fullName,
+
+        const userData = {
+            userName,
             email,
             password,
             confirmPassword,
-            agreeTerms,
-        });
+        };
+        const errors = RegisterValidator(userData);
+        if (Object.keys(errors).length > 0) {
+            setErrors(errors);
+            return;
+        }
+        // Handle registration logic here
+        AuthService.register(userName, email, password);
+        console.log("Registration successful");
+        // reset form
+        setuserName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+
+        // redirect
     };
 
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit}>
                 <h2>Create Your Account</h2>
-                <div className="form-group fullName">
-                    <label htmlFor="fullName">Full Name</label>
+                <div className="form-group userName">
+                    <label htmlFor="userName">Username</label>
                     <input
                         type="text"
-                        id="fullName"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        id="userName"
+                        value={userName}
+                        onChange={(e) => setuserName(e.target.value)}
                         required
                     />
                 </div>
@@ -63,23 +78,20 @@ const RegisterForm = () => {
                         required
                     />
                 </div>
-                <div className="remember-me">
-                    <input
-                        type="checkbox"
-                        id="agree-terms"
-                        checked={agreeTerms}
-                        onChange={(e) => setAgreeTerms(e.target.checked)}
-                        required
-                    />
-                    <label htmlFor="agree-terms">
-                        I agree to the Terms and Conditions
-                    </label>
-                </div>
+                {errors.password && <p className="error">{errors.password}</p>}
+                {errors.confirmPassword && (
+                    <p className="error">{errors.confirmPassword}</p>
+                )}
+
+                {errors.email && <p className="error">{errors.email}</p>}
+
+                {errors.userName && <p className="error">{errors.userName}</p>}
+
                 <button type="submit" className="login-button">
                     REGISTER
                 </button>
                 <div className="forgot-password">
-                    <a href="#">Already have an account? Log in</a>
+                    <Link to="/login">Already have an account? Log in</Link>
                 </div>
             </form>
             <div className="quote-container">

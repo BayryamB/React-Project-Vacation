@@ -75,7 +75,7 @@ const Rent = mongoose.model("Rents", rentSchema);
 app.use(express.json());
 
 // Register endpoint
-app.post("/api/register", async (req, res) => {
+app.post("/register", async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new User({
