@@ -1,10 +1,12 @@
 import { useState } from "react";
 import AuthService from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle login logic here
@@ -13,6 +15,9 @@ const LoginForm = () => {
         // reset form
         setUsername("");
         setPassword("");
+
+        // redirect
+        navigate("/");
     };
 
     return (

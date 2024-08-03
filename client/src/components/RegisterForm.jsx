@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RegisterValidator from "../utils/registerValidator";
 import AuthService from "../services/authService";
 const RegisterForm = () => {
@@ -8,6 +8,8 @@ const RegisterForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
+
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -32,6 +34,7 @@ const RegisterForm = () => {
         setConfirmPassword("");
 
         // redirect
+        navigate("/");
     };
 
     return (

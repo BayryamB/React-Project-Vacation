@@ -1,8 +1,11 @@
 import AuthService from "../services/authService";
-
+import { useNavigate } from "react-router-dom";
 const Logout = () => {
-    const logout = () => {
+    const navigate = useNavigate();
+    const logout = (e) => {
+        e.preventDefault();
         AuthService.logout();
+        navigate("/");
     };
     return (
         <div>
