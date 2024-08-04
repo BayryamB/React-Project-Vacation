@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterValidator from "../utils/registerValidator";
-import AuthService from "../services/authService";
+import AuthContext from "../contexts/authContext";
 const RegisterForm = () => {
     const [username, setuserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
+
+    const context = useContext(AuthContext);
+    const { authValue } = context;
+    const { registerHandler } = authValue;
 
     const navigate = useNavigate();
     const handleSubmit = (e) => {
@@ -25,7 +29,8 @@ const RegisterForm = () => {
             return;
         }
         // Handle registration logic here
-        AuthService.register(username, email, password);
+
+        registerHandler({ username, email, password });
         console.log("Registration successful");
         // reset form
         setuserName("");

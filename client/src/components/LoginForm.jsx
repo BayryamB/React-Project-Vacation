@@ -1,17 +1,22 @@
 import { useState } from "react";
-import AuthService from "../services/authService";
+import AuthContext from "../contexts/authContext";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+    const context = useContext(AuthContext);
+    const { authValue } = context;
+    const loginHandler = authValue.loginHandler;
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle login logic here
-        console.log("Login submitted", { username, password });
-        AuthService.login(username, password);
+
+        loginHandler({ username, password });
+        console.log("Login successful");
         // reset form
         setUsername("");
         setPassword("");

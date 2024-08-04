@@ -13,22 +13,32 @@ import LongTermStays from "./components/LontTermStays";
 import NormalStayDetails from "./components/NormalStayDetails";
 import LongTermStayDetails from "./components/LongTermStayDetails";
 import AuthContext from "./contexts/authContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AuthService from "./services/authService";
 function App() {
     const [auth, setAuth] = useState({});
-    useEffect(() => {
-        const fetchAuth = () => {
-            const user = AuthService.getUser();
-            setAuth(user);
-        };
 
-        fetchAuth();
-    }, []);
-    console.log(auth);
+    const loginHandler = async (data) => {
+        const result = await AuthService.login(data.username, data.password);
+        setAuth(result);
+    };
+    const logoutHandler = () => {
+        AuthService.logout();
+        setAuth({});
+    };
+    const registerHandler = async (data) => {
+        const result = await AuthService.register(
+            data.username,
+            data.email,
+            data.password
+        );
+        setAuth(result);
+    };
+    const authValue = { auth, loginHandler, logoutHandler, registerHandler };
+    console.log("Auth", auth);
     return (
         <>
-            <AuthContext.Provider value={auth}>
+            <AuthContext.Provider value={{ authValue }}>
                 <Navigation />
 
                 <Routes>

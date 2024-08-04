@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
+import { useContext } from "react";
+import AuthContext from "../contexts/authContext";
 
 const Navigation = () => {
+    const { authValue } = useContext(AuthContext);
+    const { auth } = authValue;
+    const user = localStorage.getItem("user");
+
+    console.log("Auth from Navigation", auth);
     return (
         <nav className="navbar">
             <div className="navbar-container">
@@ -48,15 +55,21 @@ const Navigation = () => {
                     </li>
                 </ul>
                 <div className="navbar-user">
-                    <div className="dropdown">
-                        <button className="dropbtn">
-                            Profile <i className="fa fa-caret-down"></i>
-                        </button>
-                        <div className="dropdown-content">
-                            <Link to="/login">Login</Link>
-                            <Link to="/register">Register</Link>
-                            <Logout />
-                        </div>
+                    <div className="flex gap-2">
+                        {user ? (
+                            <>
+                                <Link to="/profile">
+                                    {user}
+                                    {" profile"}
+                                </Link>
+                                <Logout />
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login">Login</Link>
+                                <Link to="/register">Register</Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
