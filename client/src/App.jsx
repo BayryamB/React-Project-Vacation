@@ -20,6 +20,7 @@ function App() {
 
     const loginHandler = async (data) => {
         const result = await AuthService.login(data.username, data.password);
+        console.log("Result", result);
         setAuth(result);
     };
     const logoutHandler = () => {

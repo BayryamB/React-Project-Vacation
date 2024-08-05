@@ -55,7 +55,7 @@ const Navigation = () => {
                     </li>
                 </ul>
                 <div className="navbar-user">
-                    <div className="flex gap-2">
+                    <div className="user-links">
                         {user ? (
                             <>
                                 <Link to="/profile">

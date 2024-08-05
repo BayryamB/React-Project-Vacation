@@ -110,7 +110,11 @@ app.post("/login", async (req, res) => {
         const token = jwt.sign({ username: user.username }, "your_secret_key", {
             expiresIn: "1h",
         });
-        res.status(200).json({ token: token, userId: user._id });
+        res.status(200).json({
+            token: token,
+            userId: user._id,
+            username: user.username,
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import NormalStaysService from "../services/normalStaysService";
 import LongTermeStaysService from "../services/longTermStaysService";
+import AuthContext from "../contexts/authContext";
 const Stays = () => {
     const [stays, setStays] = useState([]);
     const [longStays, setLongStays] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const context = useContext(AuthContext);
+    const { authValue } = context;
+    const { auth } = authValue;
+
+    const isAuth = auth.username ? true : false;
     useEffect(() => {
         NormalStaysService.getFiveRecentNormalStays()
             .then((data) => {
@@ -70,9 +77,13 @@ const Stays = () => {
                     <p className="view">
                         <Link to="/normal-stays">View All Normal Stays</Link>
                     </p>
-                    <p className="create">
-                        <Link to="/normal-stays/create">Rent Your Place</Link>
-                    </p>
+                    {isAuth && (
+                        <p className="create">
+                            <Link to="/normal-stays/create">
+                                Rent Your Place
+                            </Link>
+                        </p>
+                    )}
                 </div>
             </main>
 
@@ -112,11 +123,13 @@ const Stays = () => {
                             View All Long Term Stays
                         </Link>
                     </p>
-                    <p className="create">
-                        <Link to="/long-term-stays/create">
-                            Rent Your Place
-                        </Link>
-                    </p>
+                    {isAuth && (
+                        <p className="create">
+                            <Link to="/normal-stays/create">
+                                Rent Your Place
+                            </Link>
+                        </p>
+                    )}
                 </div>
             </main>
         </div>
