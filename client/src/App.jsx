@@ -19,6 +19,8 @@ import CreateNormalStay from "./components/CreateNormalStay";
 import CreateLongStay from "./components/CreateLongStay";
 import EditNormalStay from "./components/EditNormalStay";
 import EditLongStay from "./components/EditLongStay";
+import CreateDestinationForm from "./components/CreateDestination";
+import EditDestination from "./components/EditDestination";
 function App() {
     const [auth, setAuth] = useState({});
 
@@ -86,8 +88,15 @@ function App() {
                         path="/long-term-stays/edit/:stayId"
                         element={<EditLongStay />}
                     />
+                    <Route
+                        path="/destinations/create"
+                        element={<CreateDestinationForm />}
+                    />
+                    <Route
+                        path="/destinations/edit/:destinationId"
+                        element={<EditDestination />}
+                    />
                 </Routes>
-
                 <Footer />
             </AuthContext.Provider>
         </>

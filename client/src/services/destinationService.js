@@ -29,8 +29,59 @@ const DestinationService = {
         }
     },
 
-    // You can add more methods here as needed, such as:
-    // createDestination, updateDestination, deleteDestination, etc.
+    createDestination: async (destination) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/destinations`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(destination),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error creating destination:", error);
+            throw error;
+        }
+    },
+
+    updateDestination: async (id, destination) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/destinations/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(destination),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(`Error updating destination with id ${id}:`, error);
+            throw error;
+        }
+    },
+
+    deleteDestination: async (id) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/destinations/${id}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error(`Error deleting destination with id ${id}:`, error);
+            throw error;
+        }
+    },
 };
 
 export default DestinationService;

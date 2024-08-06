@@ -1,22 +1,53 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import DestinationService from "../services/destinationService";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import AuthContext from "../contexts/authContext";
 export default function DestinationDetails() {
     const { id } = useParams();
     const [destination, setDestination] = useState({});
     const photos = destination.photos || [];
+    const [mainPhoto, setMainPhoto] = useState(photos[0]);
+
+    const context = useContext(AuthContext);
+    const { authValue } = context;
+    const { auth } = authValue;
+    const isAdmin = auth.username === "admin" ? true : false;
     useEffect(() => {
         DestinationService.getDestinationById(id)
             .then((data) => {
                 setDestination(data);
+                setMainPhoto(data.cover);
             })
             .catch((error) => {
                 console.error("Error fetching destination:", error);
             });
     }, [id]);
+    const navigate = useNavigate();
+
+    const handleMainPhotoClick = (photo) => {
+        setMainPhoto(photo);
+    };
+
+    const deleteHandler = () => {
+        DestinationService.deleteDestination(id);
+        navigate("/destinations");
+    };
     return (
         <div className="destination-detail">
             <main>
+                {isAdmin && (
+                    <div className="destination-buttons">
+                        <Link to={`/destinations/create`}>
+                            <button className="New">New destination</button>
+                        </Link>
+                        <Link to={`/destinations/edit/${id}`}>
+                            <button className="Edit">Edit</button>
+                        </Link>
+                        <button onClick={deleteHandler} className="Del">
+                            Delete
+                        </button>
+                    </div>
+                )}
                 <section className="destination-info">
                     <h1>
                         {destination.name} {destination.country}
@@ -49,11 +80,16 @@ export default function DestinationDetails() {
                 </section>
 
                 <section className="destination-image">
-                    <img src={destination.cover} alt={destination.name} />
+                    <img
+                        className="main-photo"
+                        src={mainPhoto}
+                        alt={destination.name}
+                    />
                     <div className="photo-gallery">
                         <div className="photo-grid">
-                            {photos.slice(0, 3).map((photo, index) => (
+                            {photos.map((photo, index) => (
                                 <img
+                                    onClick={() => handleMainPhotoClick(photo)}
                                     key={index}
                                     src={photo}
                                     alt={`${destination.name} ${index + 1}`}
@@ -72,7 +108,9 @@ export default function DestinationDetails() {
                         </div>
                         <section className="additional-info">
                             <div className="overview">
-                                <h3>Comfortable place for you</h3>
+                                <h3>
+                                    More information about {destination.name}
+                                </h3>
                                 <p>{destination.overview}</p>
                             </div>
                         </section>

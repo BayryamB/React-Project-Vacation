@@ -5,6 +5,37 @@
     padding: 20px;
 }
 
+.destination-buttons {
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.destination-buttons button {
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.destination-buttons .Del {
+    background-color: #ff6b6b;
+}
+
+.destination-buttons .Edit {
+    background-color: #2a17ab;
+}
+
+.destination-buttons .New {
+    background-color: #4caf50;
+}
+
 main {
     display: flex;
     flex-wrap: wrap;
@@ -13,6 +44,7 @@ main {
 }
 
 .destination-info {
+    width: 600px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -85,8 +117,8 @@ h1 {
 }
 
 .destination-image img {
-    width: 100%;
-    height: auto;
+    width: 600px;
+    height: 800px;
     border-radius: 10px;
     object-fit: cover;
 }
@@ -115,6 +147,14 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+}
+
+.main-photo {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 .photo-grid img {
