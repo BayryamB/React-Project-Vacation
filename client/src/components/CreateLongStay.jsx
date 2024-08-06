@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import publishLongStay from "../services/publishLongStay";
 import { useNavigate } from "react-router-dom";
-
+import AuthContext from "../contexts/authContext";
 const CreateLongStay = () => {
+    const { authValue } = useContext(AuthContext);
+    const { auth } = authValue;
+    const userId = auth.userId;
     const [formData, setFormData] = useState({
+        userId: userId,
         location: { country: "", city: "" },
         photos: ["", "", ""], // Three empty strings for photo URLs
         cover: "",
