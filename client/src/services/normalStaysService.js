@@ -41,6 +41,20 @@ const NormalStaysService = {
             throw error;
         }
     },
+
+    deleteNormalStayById: async (id) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/normal-stays/${id}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error(`Error deleting normalStay with id ${id}:`, error);
+            throw error;
+        }
+    },
 };
 
 export default NormalStaysService;

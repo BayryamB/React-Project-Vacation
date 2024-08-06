@@ -33,7 +33,7 @@ const LongTermStays = () => {
     return (
         <div className="stays-page">
             <header className="page-header">
-                <h1>Normal Stays</h1>
+                <h1>Long Term Stays</h1>
             </header>
 
             <main className="stays-content">

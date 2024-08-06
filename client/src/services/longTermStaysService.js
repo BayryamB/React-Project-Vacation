@@ -44,6 +44,22 @@ const LongTermeStaysService = {
             throw error;
         }
     },
+    deleteLogStayById: async (stayId) => {
+        try {
+            const response = await fetch(
+                `${API_BASE_URL}/long-term-stays/${stayId}`,
+                {
+                    method: "DELETE",
+                }
+            );
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error("Error deleting LongStays:", error);
+            throw error;
+        }
+    },
 };
 
 export default LongTermeStaysService;

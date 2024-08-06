@@ -61,6 +61,12 @@ export default function LongTermStayDetails() {
         navigate(`/long-term-stays/edit/${stayId}`);
     };
 
+    const deleteHandler = async () => {
+        const result = await LongTermStaysService.deleteLogStayById(stayId);
+        console.log(result);
+        navigate("/long-term-stays");
+    };
+
     return (
         <div>
             <div>
@@ -134,7 +140,9 @@ export default function LongTermStayDetails() {
                                 <button onClick={editHandler} className="Edit">
                                     Edit
                                 </button>
-                                <button className="Del">Delete</button>
+                                <button onClick={deleteHandler} className="Del">
+                                    Delete
+                                </button>
                             </>
                         )}
                     </div>

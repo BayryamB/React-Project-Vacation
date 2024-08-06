@@ -59,6 +59,11 @@ export default function NormalStayDetails() {
         navigate(`/normal-stays/edit/${stayId}`);
     };
 
+    const deleteHandler = () => {
+        NormalStaysService.deleteNormalStayById(stayId);
+        navigate("/normal-stays");
+    };
+
     return (
         <div>
             <div>
@@ -128,12 +133,14 @@ export default function NormalStayDetails() {
 
                     <div className="buttons">
                         {isAuth && <button className="Book">Book</button>}
-                        {isOwner && (
+                        {!isOwner && (
                             <>
                                 <button onClick={editHandler} className="Edit">
                                     Edit
                                 </button>
-                                <button className="Del">Delete</button>
+                                <button onClick={deleteHandler} className="Del">
+                                    Delete
+                                </button>
                             </>
                         )}
                     </div>
