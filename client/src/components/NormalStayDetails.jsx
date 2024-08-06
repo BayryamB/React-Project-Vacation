@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import NormalStaysService from "../services/normalStaysService";
 import AuthContext from "../contexts/authContext";
 import LikesNormalStay from "../services/likesNormalStay";
@@ -19,6 +19,7 @@ export default function NormalStayDetails() {
     const [cover, setCover] = useState("");
 
     const isLiked = likes.includes(auth.userId);
+    const navigate = useNavigate();
     useEffect(() => {
         NormalStaysService.getNormalStayById(stayId)
             .then((data) => {
@@ -52,6 +53,10 @@ export default function NormalStayDetails() {
     };
     const coverChanger = (photo) => {
         setCover(photo);
+    };
+
+    const editHandler = () => {
+        navigate(`/normal-stays/edit/${stayId}`);
     };
 
     return (
@@ -125,7 +130,9 @@ export default function NormalStayDetails() {
                         {isAuth && <button className="Book">Book</button>}
                         {isOwner && (
                             <>
-                                <button className="Edit">Edit</button>
+                                <button onClick={editHandler} className="Edit">
+                                    Edit
+                                </button>
                                 <button className="Del">Delete</button>
                             </>
                         )}

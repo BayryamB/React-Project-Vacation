@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import LongTermStaysService from "../services/longTermStaysService";
 import AuthContext from "../contexts/authContext";
 import likesLongStay from "../services/likesLongStay";
@@ -20,6 +20,7 @@ export default function LongTermStayDetails() {
     const isOwner = isAuth && auth.userId === stay.userId;
     const isLiked = likes.includes(auth.userId);
 
+    const navigate = useNavigate();
     useEffect(() => {
         LongTermStaysService.getLongStayById(stayId)
             .then((data) => {
@@ -55,6 +56,11 @@ export default function LongTermStayDetails() {
     const coverChanger = (photo) => {
         setCover(photo);
     };
+
+    const editHandler = () => {
+        navigate(`/long-term-stays/edit/${stayId}`);
+    };
+
     return (
         <div>
             <div>
@@ -125,7 +131,9 @@ export default function LongTermStayDetails() {
                         {isAuth && <button className="Book">Book</button>}
                         {isOwner && (
                             <>
-                                <button className="Edit">Edit</button>
+                                <button onClick={editHandler} className="Edit">
+                                    Edit
+                                </button>
                                 <button className="Del">Delete</button>
                             </>
                         )}
