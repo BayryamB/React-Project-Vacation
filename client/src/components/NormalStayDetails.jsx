@@ -18,8 +18,6 @@ export default function NormalStayDetails() {
     const [likes, setLikes] = useState([]);
 
     const isLiked = likes.includes(auth.userId);
-    console.log("Likes", likes);
-    console.log("Stay", stay);
     useEffect(() => {
         NormalStaysService.getNormalStayById(stayId)
             .then((data) => {
@@ -44,13 +42,11 @@ export default function NormalStayDetails() {
     const likeHandler = async () => {
         const result = await LikesNormalStay(stayId, auth.userId);
         setLikes(result.likes);
-        console.log("Result", result);
     };
 
     const unlikeHandler = async () => {
         const result = await unlikeNormalStay(stayId, auth.userId);
         setLikes(result.likes);
-        console.log("Result", result);
     };
 
     return (

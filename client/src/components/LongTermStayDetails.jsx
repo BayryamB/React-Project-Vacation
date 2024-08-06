@@ -44,12 +44,10 @@ export default function LongTermStayDetails() {
     const likeHandler = async () => {
         const result = await likesLongStay(stayId, auth.userId);
         setLikes(result.likes);
-        console.log("Result", result);
     };
 
     const unlikeHandler = async () => {
         const result = await unlikeLongStay(stayId, auth.userId);
-        console.log("Result", result);
         setLikes(result.likes);
     };
 
@@ -92,7 +90,7 @@ export default function LongTermStayDetails() {
                             </li>
                         ))}
                     </ul>
-                    <p className="price">Price: ${stay.price} per night</p>
+                    <p className="price">Price: ${stay.price} per month</p>
                     <div className="likes">
                         <p className="likes-info">Likes: {likes.length}</p>
 

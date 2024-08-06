@@ -125,7 +125,7 @@ const Stays = () => {
                     </p>
                     {isAuth && (
                         <p className="create">
-                            <Link to="/normal-stays/create">
+                            <Link to="/long-term-stays/create">
                                 Rent Your Place
                             </Link>
                         </p>

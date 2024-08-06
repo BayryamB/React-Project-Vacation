@@ -1,0 +1,131 @@
+.create-normal-stay {
+    background-image: url("../../public/3.jpg");
+    background-size: cover;
+}
+
+.rent-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff21;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rent-form h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    background-color: #3333331e;
+}
+
+.input-field,
+.textarea-field {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.textarea-field {
+    background-color: #3333331e;
+    min-height: 100px;
+    resize: vertical;
+}
+
+.location-inputs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.location-inputs .input-field {
+    flex: 1;
+}
+
+.photos-section {
+    margin-bottom: 1.5rem;
+}
+
+.photo-input {
+    margin-bottom: 0.5rem;
+}
+
+.options-section .options-title {
+    color: #b3afaf;
+    margin-bottom: 1.5rem;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox-input {
+    margin-right: 0.5rem;
+}
+
+.option-label {
+    font-size: 1rem;
+    color: rgb(189, 186, 186);
+}
+
+.input-field,
+.textarea-field {
+    /* ... existing styles ... */
+    color: #b9b9b9; /* Dark blue-gray color for text */
+}
+
+.input-field::placeholder,
+.textarea-field::placeholder {
+    color: #95a5a6; /* Lighter color for placeholder text */
+}
+
+.submit-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #357abd;
+}
+
+.submit-button:active {
+    transform: translateY(1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .rent-form {
+        padding: 1.5rem;
+    }
+
+    .location-inputs {
+        flex-direction: column;
+    }
+
+    .location-inputs .input-field {
+        width: 100%;
+    }
+}
