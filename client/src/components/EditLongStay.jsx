@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import LongTermeStaysService from "../services/longTermStaysService";
-import editLongStay from "../services/editLongStay";
 const EditLongStay = () => {
     const stayId = useParams().stayId;
     const [formData, setFormData] = useState({
@@ -57,7 +56,8 @@ const EditLongStay = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        editLongStay(formData);
+
+        LongTermeStaysService.editLongStay(formData);
         nav("/long-term-stays/" + stayId);
     };
 

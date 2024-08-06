@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import publishNormalStay from "../services/publishNormalStay";
+import NormalStaysService from "../services/normalStaysService";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/authContext";
 const CreateNormalStay = () => {
@@ -51,7 +51,8 @@ const CreateNormalStay = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        publishNormalStay(formData);
+
+        NormalStaysService.publishNormalStay(formData);
         nav("/normal-stays");
     };
 

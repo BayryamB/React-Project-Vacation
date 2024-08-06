@@ -55,6 +55,22 @@ const NormalStaysService = {
             throw error;
         }
     },
+    publishNormalStay(stay) {
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(stay),
+        };
+        return fetch(`${API_BASE_URL}/normal-stays`, requestOptions);
+    },
+    editNormalStay(stay) {
+        const requestOptions = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(stay),
+        };
+        return fetch(`${API_BASE_URL}/normal-stays${stay._id}`, requestOptions);
+    },
 };
 
 export default NormalStaysService;

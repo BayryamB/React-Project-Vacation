@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import publishLongStay from "../services/publishLongStay";
+import LongTermeStaysService from "../services/longTermStaysService";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/authContext";
 const CreateLongStay = () => {
@@ -51,7 +51,8 @@ const CreateLongStay = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        publishLongStay(formData);
+
+        LongTermeStaysService.publishLongStay(formData);
         nav("/long-term-stays");
     };
 

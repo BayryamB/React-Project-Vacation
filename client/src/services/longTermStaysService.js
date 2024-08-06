@@ -60,6 +60,25 @@ const LongTermeStaysService = {
             throw error;
         }
     },
+    publishLongStay(stay) {
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(stay),
+        };
+        return fetch(`${API_BASE_URL}/long-term-stays`, requestOptions);
+    },
+    editLongStay(stay) {
+        const requestOptions = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(stay),
+        };
+        return fetch(
+            `${API_BASE_URL}/long-term-stays/${stay._id}`,
+            requestOptions
+        );
+    },
 };
 
 export default LongTermeStaysService;

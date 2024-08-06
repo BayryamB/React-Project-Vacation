@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NormalStaysService from "../services/normalStaysService";
-import editNormalStay from "../services/editNormalStay";
 const EditNormalStay = () => {
     const stayId = useParams().stayId;
     const [formData, setFormData] = useState({
@@ -57,7 +56,8 @@ const EditNormalStay = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        editNormalStay(formData);
+
+        NormalStaysService.editNormalStay(formData);
         nav("/normal-stays/" + stayId);
     };
 
