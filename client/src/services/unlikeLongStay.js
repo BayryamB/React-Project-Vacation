@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://localhost:3030";
 
-export default function likesNormalStay(stayId, userId) {
-    return fetch(`${API_BASE_URL}/normal-stays/like/${stayId}`, {
+export default function unlikeLongStay(stayId, userId) {
+    return fetch(`${API_BASE_URL}/long-term-stays/unlike/${stayId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

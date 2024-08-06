@@ -2,11 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LongTermStaysService from "../services/longTermStaysService";
 import AuthContext from "../contexts/authContext";
+import likesLongStay from "../services/likesLongStay";
+import unlikeLongStay from "../services/unlikeLongStay";
 
 export default function LongTermStayDetails() {
     const { stayId } = useParams();
     const [stay, setStay] = useState({});
     const [error, setError] = useState(null);
+    const [likes, setLikes] = useState([]);
+
     const [isLoading, setIsLoading] = useState(true);
 
     const context = useContext(AuthContext);
@@ -14,13 +18,13 @@ export default function LongTermStayDetails() {
     const { auth } = authValue;
     const isAuth = auth.username ? true : false;
     const isOwner = isAuth && auth.userId === stay.userId;
-    console.log("isAuth", auth.userId);
-    console.log("stay", stay);
+    const isLiked = likes.includes(auth.userId);
 
     useEffect(() => {
         LongTermStaysService.getLongStayById(stayId)
             .then((data) => {
                 setStay(data);
+                setLikes(data.likes);
                 setIsLoading(false);
             })
             .catch((error) => {
@@ -36,6 +40,18 @@ export default function LongTermStayDetails() {
     if (isLoading) {
         return <div>Loading...</div>;
     }
+
+    const likeHandler = async () => {
+        const result = await likesLongStay(stayId, auth.userId);
+        setLikes(result.likes);
+        console.log("Result", result);
+    };
+
+    const unlikeHandler = async () => {
+        const result = await unlikeLongStay(stayId, auth.userId);
+        console.log("Result", result);
+        setLikes(result.likes);
+    };
 
     return (
         <div>
@@ -77,7 +93,31 @@ export default function LongTermStayDetails() {
                         ))}
                     </ul>
                     <p className="price">Price: ${stay.price} per night</p>
-                    <p className="likes-info">Likes: {stay.likes.length}</p>
+                    <div className="likes">
+                        <p className="likes-info">Likes: {likes.length}</p>
+
+                        {isAuth && (
+                            <button className="Like">
+                                {isLiked ? (
+                                    <i
+                                        onClick={unlikeHandler}
+                                        className="fas fa-thumbs-down"
+                                    >
+                                        {" "}
+                                        Unlike
+                                    </i>
+                                ) : (
+                                    <i
+                                        onClick={likeHandler}
+                                        className="fas fa-thumbs-up"
+                                    >
+                                        {" "}
+                                        Like
+                                    </i>
+                                )}
+                            </button>
+                        )}
+                    </div>
                     <div className="buttons">
                         {isAuth && <button className="Book">Book</button>}
                         {isOwner && (

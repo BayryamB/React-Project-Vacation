@@ -332,7 +332,7 @@ app.post("/normal-stays/like/:id", async (req, res) => {
 });
 
 // Remove likes from a rent
-app.post("/normal-stays/dislike/:id", async (req, res) => {
+app.post("/normal-stays/unlike/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body; // Access the userId from the request body
     try {
@@ -502,7 +502,7 @@ app.post("/long-term-stays/like/:id", async (req, res) => {
 });
 
 // Remove likes from a rent
-app.post("/long-term-stays/dislike/:id", async (req, res) => {
+app.post("/long-term-stays/unlike/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body; // Access the userId from the request body
     try {

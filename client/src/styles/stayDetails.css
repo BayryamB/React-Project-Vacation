@@ -28,16 +28,25 @@
     margin-bottom: 15px;
 }
 
-.likes-info {
+.likes {
     display: flex;
     align-items: center;
+    margin: 10px 0 20px 0;
+    padding-left: 15px;
+}
+.likes-info {
     color: #e74c3c;
     font-weight: bold;
 }
+.likes button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+}
 
-.likes-info::before {
-    content: "♥";
-    margin-right: 5px;
+.likes i {
+    color: #3498db;
 }
 
 .stay-card p {
