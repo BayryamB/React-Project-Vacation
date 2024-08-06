@@ -11,12 +11,12 @@
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
     max-width: 800px;
     height: auto;
 }
 
 .location-info {
+    font-weight: bold;
     color: #333;
     margin-bottom: 10px;
 }
@@ -64,7 +64,7 @@
 
 .stay-options {
     list-style-type: none;
-    padding: 0;
+    padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 10px;
@@ -79,6 +79,7 @@
 }
 
 .stay-photos {
+    padding: 20px;
     margin-top: 20px;
     width: 600px;
     height: 800px;

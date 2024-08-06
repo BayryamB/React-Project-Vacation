@@ -1,8 +1,8 @@
 import { useState } from "react";
-import publishNormalStay from "../services/publishNormalStay";
+import publishLongStay from "../services/publishLongStay";
 import { useNavigate } from "react-router-dom";
 
-const CreateNormalStay = () => {
+const CreateLongStay = () => {
     const [formData, setFormData] = useState({
         location: { country: "", city: "" },
         photos: ["", "", ""], // Three empty strings for photo URLs
@@ -47,14 +47,14 @@ const CreateNormalStay = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        publishNormalStay(formData);
-        nav("/normal-stays");
+        publishLongStay(formData);
+        nav("/long-term-stays");
     };
 
     return (
         <div className="create-normal-stay">
             <header className="page-header">
-                <h1>Create Normal Stay</h1>
+                <h1>Create Long Term Stay</h1>
             </header>
             <form onSubmit={handleSubmit} className="rent-form">
                 <div className="location-inputs">
@@ -151,4 +151,4 @@ const CreateNormalStay = () => {
     );
 };
 
-export default CreateNormalStay;
+export default CreateLongStay;

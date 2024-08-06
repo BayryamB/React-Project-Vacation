@@ -10,7 +10,7 @@ export default function LongTermStayDetails() {
     const [stay, setStay] = useState({});
     const [error, setError] = useState(null);
     const [likes, setLikes] = useState([]);
-
+    const [cover, setCover] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
     const context = useContext(AuthContext);
@@ -25,6 +25,7 @@ export default function LongTermStayDetails() {
             .then((data) => {
                 setStay(data);
                 setLikes(data.likes);
+                setCover(data.cover);
                 setIsLoading(false);
             })
             .catch((error) => {
@@ -51,6 +52,9 @@ export default function LongTermStayDetails() {
         setLikes(result.likes);
     };
 
+    const coverChanger = (photo) => {
+        setCover(photo);
+    };
     return (
         <div>
             <div>
@@ -67,7 +71,7 @@ export default function LongTermStayDetails() {
                     <h3>Photos:</h3>
                     <div className="stay-photos">
                         <div className="cover-photo-normal">
-                            <img src={stay.cover} alt="Cover" />
+                            <img src={cover} alt="Cover" />
                         </div>
                         <div className="photo-grid">
                             {stay.photos.map((photo, index) => (
@@ -75,6 +79,7 @@ export default function LongTermStayDetails() {
                                     key={index}
                                     src={photo}
                                     alt={`Stay photo ${index + 1}`}
+                                    onClick={() => coverChanger(photo)}
                                 />
                             ))}
                         </div>

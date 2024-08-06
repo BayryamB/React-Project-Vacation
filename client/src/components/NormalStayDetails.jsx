@@ -16,6 +16,7 @@ export default function NormalStayDetails() {
     const isAuth = auth.username ? true : false;
     const isOwner = isAuth && auth.userId === stay.userId;
     const [likes, setLikes] = useState([]);
+    const [cover, setCover] = useState("");
 
     const isLiked = likes.includes(auth.userId);
     useEffect(() => {
@@ -23,6 +24,7 @@ export default function NormalStayDetails() {
             .then((data) => {
                 setStay(data);
                 setLikes(data.likes);
+                setCover(data.cover);
                 setIsLoading(false);
             })
             .catch((error) => {
@@ -48,6 +50,9 @@ export default function NormalStayDetails() {
         const result = await unlikeNormalStay(stayId, auth.userId);
         setLikes(result.likes);
     };
+    const coverChanger = (photo) => {
+        setCover(photo);
+    };
 
     return (
         <div>
@@ -65,7 +70,7 @@ export default function NormalStayDetails() {
                     <h3>Photos:</h3>
                     <div className="stay-photos">
                         <div className="cover-photo-normal">
-                            <img src={stay.cover} alt="Cover" />
+                            <img src={cover} alt="Cover" />
                         </div>
                         <div className="photo-grid">
                             {stay.photos.map((photo, index) => (
@@ -73,6 +78,7 @@ export default function NormalStayDetails() {
                                     key={index}
                                     src={photo}
                                     alt={`Stay photo ${index + 1}`}
+                                    onClick={() => coverChanger(photo)}
                                 />
                             ))}
                         </div>

@@ -16,6 +16,7 @@ import AuthContext from "./contexts/authContext";
 import { useState } from "react";
 import AuthService from "./services/authService";
 import CreateNormalStay from "./components/CreateNormalStay";
+import CreateLongStay from "./components/CreateLongStay";
 function App() {
     const [auth, setAuth] = useState({});
 
@@ -70,6 +71,10 @@ function App() {
                     <Route
                         path="/normal-stays/create"
                         element={<CreateNormalStay />}
+                    />
+                    <Route
+                        path="/long-term-stays/create"
+                        element={<CreateLongStay />}
                     />
                 </Routes>
 
