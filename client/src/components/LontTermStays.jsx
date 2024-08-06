@@ -1,11 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import LongTermeStaysService from "../services/longTermStaysService";
+import AuthContext from "../contexts/authContext";
 
 const LongTermStays = () => {
     const [stays, setStays] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const context = useContext(AuthContext);
+    const { authValue } = context;
+    const { auth } = authValue;
+    const isAuth = auth.username ? true : false;
+
     useEffect(() => {
         LongTermeStaysService.getAllLongStays()
             .then((data) => {
@@ -48,12 +55,15 @@ const LongTermStays = () => {
                         </div>
                     ))}
                 </div>
+
                 <div className="buttons">
-                    <p className="create">
-                        <Link to="/long-term-stays/create">
-                            Rent Your Place
-                        </Link>
-                    </p>
+                    {isAuth && (
+                        <p className="create">
+                            <Link to="/long-term-stays/create">
+                                Rent Your Place
+                            </Link>
+                        </p>
+                    )}
                 </div>
             </main>
         </div>

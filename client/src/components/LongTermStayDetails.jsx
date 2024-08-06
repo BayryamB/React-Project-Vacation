@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LongTermStaysService from "../services/longTermStaysService";
+import AuthContext from "../contexts/authContext";
 
 export default function LongTermStayDetails() {
     const { stayId } = useParams();
     const [stay, setStay] = useState({});
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const context = useContext(AuthContext);
+    const { authValue } = context;
+    const { auth } = authValue;
+    const isAuth = auth.username ? true : false;
+    const isOwner = isAuth && auth.userId === stay.userId;
+    console.log("isAuth", auth.userId);
+    console.log("stay", stay);
 
     useEffect(() => {
         LongTermStaysService.getLongStayById(stayId)
@@ -40,17 +49,7 @@ export default function LongTermStayDetails() {
                     <p className="location-info">
                         Location: {stay.location.city}, {stay.location.country}
                     </p>
-                    <p className="price">Price: ${stay.price} per night</p>
-                    <p>Description: {stay.description}</p>
-                    <p className="likes-info">Likes: {stay.likes.length}</p>
-                    <h3>Options:</h3>
-                    <ul className="stay-options">
-                        {Object.entries(stay.options).map(([option, value]) => (
-                            <li key={option}>
-                                {option}: {value ? "Yes" : "No"}
-                            </li>
-                        ))}
-                    </ul>
+
                     <h3>Photos:</h3>
                     <div className="stay-photos">
                         <div className="cover-photo-normal">
@@ -65,6 +64,28 @@ export default function LongTermStayDetails() {
                                 />
                             ))}
                         </div>
+                    </div>
+
+                    <p>Description: {stay.description}</p>
+
+                    <h3>Options:</h3>
+                    <ul className="stay-options">
+                        {Object.entries(stay.options).map(([option, value]) => (
+                            <li key={option}>
+                                {option}: {value ? "Yes" : "No"}
+                            </li>
+                        ))}
+                    </ul>
+                    <p className="price">Price: ${stay.price} per night</p>
+                    <p className="likes-info">Likes: {stay.likes.length}</p>
+                    <div className="buttons">
+                        {isAuth && <button className="Book">Book</button>}
+                        {isOwner && (
+                            <>
+                                <button className="Edit">Edit</button>
+                                <button className="Del">Delete</button>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

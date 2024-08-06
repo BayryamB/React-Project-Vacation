@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NormalStaysService from "../services/normalStaysService";
+import AuthContext from "../contexts/authContext";
 
 const NormalStays = () => {
     const [stays, setStays] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const context = useContext(AuthContext);
+    const { authValue } = context;
+    const { auth } = authValue;
+    const isAuth = auth.username ? true : false;
     useEffect(() => {
         NormalStaysService.getAllNormalStays()
             .then((data) => {
@@ -48,10 +54,15 @@ const NormalStays = () => {
                         </div>
                     ))}
                 </div>
+
                 <div className="buttons">
-                    <p className="create">
-                        <Link to="/normal-stays/create">Rent Your Place</Link>
-                    </p>
+                    {isAuth && (
+                        <p className="create">
+                            <Link to="/normal-stays/create">
+                                Rent Your Place
+                            </Link>
+                        </p>
+                    )}
                 </div>
             </main>
         </div>
