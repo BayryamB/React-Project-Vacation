@@ -75,32 +75,57 @@ function App() {
                     />
                     <Route
                         path="/normal-stays/create"
-                        element={<CreateNormalStay />}
+                        element={
+                            auth.username ? <CreateNormalStay /> : <LoginForm />
+                        }
                     />
                     <Route
                         path="/long-term-stays/create"
-                        element={<CreateLongStay />}
+                        element={
+                            auth.username ? <CreateLongStay /> : <LoginForm />
+                        }
                     />
                     <Route
                         path="/normal-stays/edit/:stayId"
-                        element={<EditNormalStay />}
+                        element={
+                            auth.username ? <EditNormalStay /> : <LoginForm />
+                        }
                     />
                     <Route
                         path="/long-term-stays/edit/:stayId"
-                        element={<EditLongStay />}
+                        element={
+                            auth.username ? <EditLongStay /> : <LoginForm />
+                        }
                     />
                     <Route
                         path="/destinations/create"
-                        element={<CreateDestinationForm />}
+                        element={
+                            auth.username === "admin" ? (
+                                <CreateDestinationForm />
+                            ) : (
+                                <LoginForm />
+                            )
+                        }
                     />
                     <Route
                         path="/destinations/edit/:destinationId"
-                        element={<EditDestination />}
+                        element={
+                            auth.username === "admin" ? (
+                                <EditDestination />
+                            ) : (
+                                <LoginForm />
+                            )
+                        }
                     />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route
+                        path="/profile"
+                        element={auth.username ? <Profile /> : <LoginForm />}
+                    />
                     <Route
                         path="/profile/modify/:userId"
-                        element={<ModifyProfile />}
+                        element={
+                            auth.username ? <ModifyProfile /> : <LoginForm />
+                        }
                     />
                 </Routes>
                 <Footer />

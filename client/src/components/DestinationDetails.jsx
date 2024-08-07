@@ -14,7 +14,7 @@ export default function DestinationDetails() {
     const { auth } = authValue;
     const isAdmin = auth.username === "admin" ? true : false;
     useEffect(() => {
-        if (auth) {
+        if (auth.username) {
             userService.getUser(auth.userId).then((data) => {
                 setUser(data);
             });

@@ -65,8 +65,8 @@
 
 .destinations-image {
     margin: 0 auto;
-    width: 400px;
-    height: 100%;
+    width: 380px;
+    height: 600px;
     object-fit: cover;
     transition: transform 0.3s ease;
 }

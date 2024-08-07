@@ -21,33 +21,33 @@ const Footer = () => {
                     <h3 className="footer-heading">Menu Link</h3>
                     <ul>
                         <li>
-                            <Link to="#" className="footer-link">
+                            <Link to="/" className="footer-link">
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link to="#" className="footer-link">
+                            <Link to="/about" className="footer-link">
                                 About
                             </Link>
                         </li>
                         <li>
-                            <Link to="#" className="footer-link">
+                            <Link to="/destinations" className="footer-link">
                                 Destinations
                             </Link>
                         </li>
                         <li>
-                            <Link to="#" className="footer-link">
-                                Offers
+                            <Link to="/stays" className="footer-link">
+                                All Stays
                             </Link>
                         </li>
                         <li>
-                            <Link to="#" className="footer-link">
-                                Catalog
+                            <Link to="/normal-stays" className="footer-link">
+                                Normal Stays
                             </Link>
                         </li>
                         <li>
-                            <Link to="#" className="footer-link">
-                                Contact Us
+                            <Link to="/long-term-stays" className="footer-link">
+                                Long Term Stays
                             </Link>
                         </li>
                     </ul>

@@ -56,7 +56,8 @@
     flex: 1;
 }
 
-.photos-section {
+.photos-section .photos-title {
+    color: #b3afaf;
     margin-bottom: 1.5rem;
 }
 

@@ -153,7 +153,7 @@ export default function NormalStayDetails() {
                                 Book
                             </button>
                         )}
-                        {!isOwner && (
+                        {isOwner && (
                             <>
                                 <button onClick={editHandler} className="Edit">
                                     Edit

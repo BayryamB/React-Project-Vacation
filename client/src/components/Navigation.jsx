@@ -1,21 +1,16 @@
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
-import { useContext } from "react";
-import AuthContext from "../contexts/authContext";
 
 const Navigation = () => {
-    const { authValue } = useContext(AuthContext);
-    const { auth } = authValue;
     const user = localStorage.getItem("user");
 
-    console.log("Auth from Navigation", auth);
     return (
         <nav className="navbar">
             <div className="navbar-container">
                 <div className="navbar-logo">
                     <Link to="/">
                         <img
-                            src="/Hand-drawn-a-palm-tress-illustration-on-transparent-background-PNG.png"
+                            src="/Easy Travel.png"
                             alt="ET"
                             className="logo-image"
                         />

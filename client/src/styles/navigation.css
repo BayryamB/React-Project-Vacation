@@ -47,18 +47,14 @@
     color: #333;
     font-weight: 500;
     font-size: 14px;
+    font-weight: bold;
     text-transform: uppercase;
     padding: 5px 0;
     transition: color 0.3s ease;
 }
 
-.navbar-link:hover,
-.navbar-link.active {
+.navbar-link:hover {
     color: #182295;
-}
-
-.navbar-link.active {
-    border-bottom: 2px solid #182295;
 }
 
 .user-links {

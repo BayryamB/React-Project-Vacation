@@ -84,7 +84,7 @@ const CreateNormalStay = () => {
                 </div>
 
                 <div className="photos-section">
-                    <h3 className="photos-title">Photos</h3>
+                    <h3 className="photos-title ">Photos</h3>
                     {[0, 1, 2].map((index) => (
                         <input
                             key={index}

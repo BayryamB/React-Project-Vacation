@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AuthContext from "../contexts/authContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
 const LoginForm = () => {
@@ -16,7 +16,6 @@ const LoginForm = () => {
         // Handle login logic here
 
         loginHandler({ username, password });
-        console.log("Login successful");
         // reset form
         setUsername("");
         setPassword("");
@@ -53,7 +52,7 @@ const LoginForm = () => {
                     LOGIN
                 </button>
                 <div className="forgot-password">
-                    <a href="#">Forgot Password?</a>
+                    <Link to="/register">Dont have an account?</Link>
                 </div>
             </form>
             <div className="quote-container">
