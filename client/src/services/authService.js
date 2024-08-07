@@ -14,7 +14,6 @@ const AuthService = {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log("Registered user:", data);
             localStorage.setItem("user", username);
             return data;
         } catch (error) {

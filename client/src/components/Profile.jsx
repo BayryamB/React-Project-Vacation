@@ -178,6 +178,7 @@ const Profile = () => {
                                         <p>
                                             {item.name} {item.country}
                                         </p>
+                                        <p>{item.price} € 10 days</p>
                                     </div>
                                 ))}
                             </ul>
