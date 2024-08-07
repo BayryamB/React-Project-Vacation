@@ -44,13 +44,13 @@ const Navigation = () => {
                         </Link>
                     </li>
                     <li className="navbar-item">
-                        <Link to="/catalog" className="navbar-link">
-                            CATALOG
+                        <Link to="/normal-stays" className="navbar-link">
+                            Normal Stays
                         </Link>
                     </li>
                     <li className="navbar-item">
-                        <Link to="/contact" className="navbar-link">
-                            CONTACT US
+                        <Link to="/long-term-stays" className="navbar-link">
+                            Lont Term Stays
                         </Link>
                     </li>
                 </ul>

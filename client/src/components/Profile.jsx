@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import userService from "../services/userService";
 import AuthContext from "../contexts/authContext";
 import NormalStaysService from "../services/normalStaysService";
@@ -12,6 +13,8 @@ const Profile = () => {
     const [likes, setLikes] = useState([]);
     const [watchlist, setWatchlist] = useState([]);
     const [viewCartActive, setViewCartActive] = useState(false);
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -64,6 +67,10 @@ const Profile = () => {
         setViewCartActive(!viewCartActive);
     };
 
+    const modifyHandler = () => {
+        navigate("/profile/modify/" + auth.userId);
+    };
+
     return (
         <div>
             <div>
@@ -73,6 +80,12 @@ const Profile = () => {
             </div>
             <div className="profile-container">
                 <div className="profile-card">
+                    <button
+                        onClick={modifyHandler}
+                        className="button button-modify"
+                    >
+                        Modify Profile
+                    </button>
                     <div className="profile-image">
                         <img
                             src="../../public/profile.jpg"
@@ -86,10 +99,13 @@ const Profile = () => {
                         <p>Likes: {likes.length}</p>
                         <p>Cart: {watchlist.length}</p>
                         {!viewCartActive && (
-                            <button onClick={WatchlistiCard}>View Cart</button>
+                            <button className="cart" onClick={WatchlistiCard}>
+                                View Cart
+                            </button>
                         )}
                         {viewCartActive && (
                             <button
+                                className="cart"
                                 onClick={() => {
                                     setNormalStays([]);
                                     setLongStays([]);
@@ -107,10 +123,12 @@ const Profile = () => {
                             <ul className="list">
                                 {normalStays.map((item) => (
                                     <div className="card" key={item._id}>
-                                        <img
-                                            src={item.cover}
-                                            alt={item.location.city}
-                                        />
+                                        <Link to={`/normal-stays/${item._id}`}>
+                                            <img
+                                                src={item.cover}
+                                                alt={item.location.city}
+                                            />
+                                        </Link>
                                         <p>
                                             {item.location.city}{" "}
                                             {item.location.country}
@@ -127,10 +145,14 @@ const Profile = () => {
                             <ul className="list">
                                 {longStays.map((item) => (
                                     <div className="card" key={item._id}>
-                                        <img
-                                            src={item.cover}
-                                            alt={item.location.city}
-                                        />
+                                        <Link
+                                            to={`/long-term-stays/${item._id}`}
+                                        >
+                                            <img
+                                                src={item.cover}
+                                                alt={item.location.city}
+                                            />
+                                        </Link>
                                         <p>
                                             {item.location.city}{" "}
                                             {item.location.country}
@@ -147,7 +169,12 @@ const Profile = () => {
                             <ul className="list">
                                 {destinations.map((item) => (
                                     <div className="card" key={item._id}>
-                                        <img src={item.cover} alt={item.name} />
+                                        <Link to={`/destinations/${item._id}`}>
+                                            <img
+                                                src={item.cover}
+                                                alt={item.name}
+                                            />
+                                        </Link>
                                         <p>
                                             {item.name} {item.country}
                                         </p>

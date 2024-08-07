@@ -22,6 +22,7 @@ import EditLongStay from "./components/EditLongStay";
 import CreateDestinationForm from "./components/CreateDestination";
 import EditDestination from "./components/EditDestination";
 import Profile from "./components/Profile";
+import ModifyProfile from "./components/ModifyProfile";
 function App() {
     const [auth, setAuth] = useState({});
 
@@ -97,6 +98,10 @@ function App() {
                         element={<EditDestination />}
                     />
                     <Route path="/profile" element={<Profile />} />
+                    <Route
+                        path="/profile/modify/:userId"
+                        element={<ModifyProfile />}
+                    />
                 </Routes>
                 <Footer />
             </AuthContext.Provider>
