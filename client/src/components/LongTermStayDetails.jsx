@@ -22,10 +22,11 @@ export default function LongTermStayDetails() {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
     useEffect(() => {
-        userService.getUser(auth.userId).then((data) => {
-            setUser(data);
-        });
-
+        if (isAuth) {
+            userService.getUser(auth.userId).then((data) => {
+                setUser(data);
+            });
+        }
         LongTermStaysService.getLongStayById(stayId)
             .then((data) => {
                 setStay(data);
@@ -38,7 +39,7 @@ export default function LongTermStayDetails() {
                 setError(error);
                 setIsLoading(false);
             });
-    }, [stayId, auth.userId]);
+    }, [stayId, auth.userId, isAuth]);
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -75,6 +76,10 @@ export default function LongTermStayDetails() {
         navigate("/long-term-stays");
     };
 
+    const bookHandler = () => {
+        user.watchlist.push({ long: stayId });
+        userService.updateUser(auth.userId, user);
+    };
     return (
         <div>
             <div>
@@ -142,7 +147,11 @@ export default function LongTermStayDetails() {
                         )}
                     </div>
                     <div className="buttons">
-                        {isAuth && <button className="Book">Book</button>}
+                        {isAuth && (
+                            <button onClick={bookHandler} className="Book">
+                                Book
+                            </button>
+                        )}
                         {isOwner && (
                             <>
                                 <button onClick={editHandler} className="Edit">

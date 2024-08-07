@@ -2,17 +2,23 @@ import { useEffect, useState, useContext } from "react";
 import DestinationService from "../services/destinationService";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/authContext";
+import userService from "../services/userService";
 export default function DestinationDetails() {
     const { id } = useParams();
     const [destination, setDestination] = useState({});
     const photos = destination.photos || [];
     const [mainPhoto, setMainPhoto] = useState(photos[0]);
-
+    const [user, setUser] = useState({});
     const context = useContext(AuthContext);
     const { authValue } = context;
     const { auth } = authValue;
     const isAdmin = auth.username === "admin" ? true : false;
     useEffect(() => {
+        if (auth) {
+            userService.getUser(auth.userId).then((data) => {
+                setUser(data);
+            });
+        }
         DestinationService.getDestinationById(id)
             .then((data) => {
                 setDestination(data);
@@ -21,7 +27,7 @@ export default function DestinationDetails() {
             .catch((error) => {
                 console.error("Error fetching destination:", error);
             });
-    }, [id]);
+    }, [id, auth]);
     const navigate = useNavigate();
 
     const handleMainPhotoClick = (photo) => {
@@ -31,6 +37,11 @@ export default function DestinationDetails() {
     const deleteHandler = () => {
         DestinationService.deleteDestination(id);
         navigate("/destinations");
+    };
+
+    const buyHandler = () => {
+        user.watchlist.push({ destination: id });
+        userService.updateUser(auth.userId, user);
     };
     return (
         <div className="destination-detail">
@@ -74,8 +85,9 @@ export default function DestinationDetails() {
                                 {destination.discount}% OFF
                             </div>
                         )}
-                        <button className="buy-button">Buy Now</button>
-                        <button className="add-to-cart">Add to Chart</button>
+                        <button onClick={buyHandler} className="buy-button">
+                            Buy Now
+                        </button>
                     </div>
                 </section>
 

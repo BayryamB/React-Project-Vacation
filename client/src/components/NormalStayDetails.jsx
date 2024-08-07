@@ -23,10 +23,11 @@ export default function NormalStayDetails() {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
     useEffect(() => {
-        userService.getUser(auth.userId).then((data) => {
-            console.log(data);
-            setUser(data);
-        });
+        if (isAuth) {
+            userService.getUser(auth.userId).then((data) => {
+                setUser(data);
+            });
+        }
         NormalStaysService.getNormalStayById(stayId)
             .then((data) => {
                 setStay(data);
@@ -39,7 +40,7 @@ export default function NormalStayDetails() {
                 setError(error);
                 setIsLoading(false);
             });
-    }, [stayId, auth.userId]);
+    }, [stayId, auth.userId, isAuth]);
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -60,6 +61,11 @@ export default function NormalStayDetails() {
         user.likes = user.likes.filter((id) => id !== stayId);
         await userService.updateUser(auth.userId, user);
         setLikes(result.likes);
+    };
+
+    const bookHandler = () => {
+        user.watchlist.push({ normal: stayId });
+        userService.updateUser(auth.userId, user);
     };
     const coverChanger = (photo) => {
         setCover(photo);
@@ -142,7 +148,11 @@ export default function NormalStayDetails() {
                     </div>
 
                     <div className="buttons">
-                        {isAuth && <button className="Book">Book</button>}
+                        {isAuth && (
+                            <button onClick={bookHandler} className="Book">
+                                Book
+                            </button>
+                        )}
                         {!isOwner && (
                             <>
                                 <button onClick={editHandler} className="Edit">
