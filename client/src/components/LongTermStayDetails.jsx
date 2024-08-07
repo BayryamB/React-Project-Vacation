@@ -4,7 +4,7 @@ import LongTermStaysService from "../services/longTermStaysService";
 import AuthContext from "../contexts/authContext";
 import likesLongStay from "../services/likesLongStay";
 import unlikeLongStay from "../services/unlikeLongStay";
-
+import userService from "../services/userService";
 export default function LongTermStayDetails() {
     const { stayId } = useParams();
     const [stay, setStay] = useState({});
@@ -19,9 +19,13 @@ export default function LongTermStayDetails() {
     const isAuth = auth.username ? true : false;
     const isOwner = isAuth && auth.userId === stay.userId;
     const isLiked = likes.includes(auth.userId);
-
+    const [user, setUser] = useState({});
     const navigate = useNavigate();
     useEffect(() => {
+        userService.getUser(auth.userId).then((data) => {
+            setUser(data);
+        });
+
         LongTermStaysService.getLongStayById(stayId)
             .then((data) => {
                 setStay(data);
@@ -34,7 +38,7 @@ export default function LongTermStayDetails() {
                 setError(error);
                 setIsLoading(false);
             });
-    }, [stayId]);
+    }, [stayId, auth.userId]);
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -45,11 +49,15 @@ export default function LongTermStayDetails() {
 
     const likeHandler = async () => {
         const result = await likesLongStay(stayId, auth.userId);
+        user.likes.push(stayId);
+        await userService.updateUser(auth.userId, user);
         setLikes(result.likes);
     };
 
     const unlikeHandler = async () => {
         const result = await unlikeLongStay(stayId, auth.userId);
+        user.likes = user.likes.filter((id) => id !== stayId);
+        await userService.updateUser(auth.userId, user);
         setLikes(result.likes);
     };
 

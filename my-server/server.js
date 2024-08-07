@@ -247,7 +247,7 @@ app.put("/normal-stays:id", async (req, res) => {
 });
 
 // Add item to watchlist
-app.post("/api/users/watchlist/:id", async (req, res) => {
+app.post("/users/watchlist/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
     try {
@@ -264,7 +264,7 @@ app.post("/api/users/watchlist/:id", async (req, res) => {
 });
 
 // Remove item from watchlist
-app.post("/api/users/unwatchlist/:id", async (req, res) => {
+app.post("/users/unwatchlist/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
     try {
@@ -281,7 +281,7 @@ app.post("/api/users/unwatchlist/:id", async (req, res) => {
 });
 
 // Add likes to a user
-app.post("/api/users/like/:id", async (req, res) => {
+app.post("/users/like/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body;
     try {
@@ -298,7 +298,7 @@ app.post("/api/users/like/:id", async (req, res) => {
 });
 
 // Remove likes from a user
-app.post("/api/users/dislike/:id", async (req, res) => {
+app.post("/users/dislike/:id", async (req, res) => {
     const { id } = req.params;
     const { userId } = req.body; // Access the userId from the request body
     try {

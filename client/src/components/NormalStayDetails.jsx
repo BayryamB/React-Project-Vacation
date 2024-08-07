@@ -4,6 +4,7 @@ import NormalStaysService from "../services/normalStaysService";
 import AuthContext from "../contexts/authContext";
 import LikesNormalStay from "../services/likesNormalStay";
 import unlikeNormalStay from "../services/unlikeNormalStay";
+import userService from "../services/userService";
 
 export default function NormalStayDetails() {
     const { stayId } = useParams();
@@ -20,7 +21,12 @@ export default function NormalStayDetails() {
 
     const isLiked = likes.includes(auth.userId);
     const navigate = useNavigate();
+    const [user, setUser] = useState({});
     useEffect(() => {
+        userService.getUser(auth.userId).then((data) => {
+            console.log(data);
+            setUser(data);
+        });
         NormalStaysService.getNormalStayById(stayId)
             .then((data) => {
                 setStay(data);
@@ -33,7 +39,7 @@ export default function NormalStayDetails() {
                 setError(error);
                 setIsLoading(false);
             });
-    }, [stayId]);
+    }, [stayId, auth.userId]);
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -44,11 +50,15 @@ export default function NormalStayDetails() {
 
     const likeHandler = async () => {
         const result = await LikesNormalStay(stayId, auth.userId);
+        user.likes.push(stayId);
+        await userService.updateUser(auth.userId, user);
         setLikes(result.likes);
     };
 
     const unlikeHandler = async () => {
         const result = await unlikeNormalStay(stayId, auth.userId);
+        user.likes = user.likes.filter((id) => id !== stayId);
+        await userService.updateUser(auth.userId, user);
         setLikes(result.likes);
     };
     const coverChanger = (photo) => {

@@ -21,12 +21,12 @@ import EditNormalStay from "./components/EditNormalStay";
 import EditLongStay from "./components/EditLongStay";
 import CreateDestinationForm from "./components/CreateDestination";
 import EditDestination from "./components/EditDestination";
+import Profile from "./components/Profile";
 function App() {
     const [auth, setAuth] = useState({});
 
     const loginHandler = async (data) => {
         const result = await AuthService.login(data.username, data.password);
-        console.log("Result", result);
         setAuth(result);
     };
     const logoutHandler = () => {
@@ -41,8 +41,8 @@ function App() {
         );
         setAuth(result);
     };
+
     const authValue = { auth, loginHandler, logoutHandler, registerHandler };
-    console.log("Auth", auth);
     return (
         <>
             <AuthContext.Provider value={{ authValue }}>
@@ -96,6 +96,7 @@ function App() {
                         path="/destinations/edit/:destinationId"
                         element={<EditDestination />}
                     />
+                    <Route path="/profile" element={<Profile />} />
                 </Routes>
                 <Footer />
             </AuthContext.Provider>
