@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -5,12 +6,9 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3030;
-
+const mongoDB_URI = process.env.MONGODB_URI;
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/Easy-Travel", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect(mongoDB_URI);
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
